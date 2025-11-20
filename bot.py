@@ -8,7 +8,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 
-from handlers import start, menu
+from handlers import start, menu, habits
 
 load_dotenv()
 TOKEN = getenv("BOT_TOKEN")
@@ -19,6 +19,7 @@ async def main() -> None:
   bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
   dp.include_router(start.router)
   dp.include_router(menu.router)
+  dp.include_router(habits.router)
   await dp.start_polling(bot)
 
 if __name__ == "__main__":
