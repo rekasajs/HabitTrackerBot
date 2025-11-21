@@ -6,6 +6,7 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 
 from keyboards.main_menu import main_menu
+from database.requests import set_habit
 
 router = Router()
 
@@ -52,7 +53,7 @@ async def add_habit_reminder_time(message: Message, state: FSMContext):
 
   await state.update_data(reminder_time = message.text)
   data = await state.get_data()
-
+  await set_habit(message.from_user.id, data['name'], data['frequency'], data['reminder_time'])
   await message.answer(
     f"✅ Привычка добавлена!\n\n"
     f"📝 Название: {data['name']}\n"
