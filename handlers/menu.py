@@ -11,9 +11,9 @@ router = Router()
 # async def command_start_handler(message: Message) -> None:
 #     await message.answer(f"📊 Список твоих привычек...")
 
-@router.message(F.text == '😊 Отметить настроение')
-async def command_start_handler(message: Message) -> None:
-    await message.answer(f"Какое у Вас настроение сегодня?")
+# @router.message(F.text == '😊 Отметить настроение')
+# async def command_start_handler(message: Message) -> None:
+#     await message.answer(f"Какое у Вас настроение сегодня?")
 
 @router.message(F.text == '📈 Статистика')
 async def command_start_handler(message: Message) -> None:

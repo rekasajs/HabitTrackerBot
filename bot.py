@@ -8,7 +8,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 
-from handlers import start, menu, habits, my_habits
+from handlers import start, menu, habits, my_habits, mood
 
 from database.models import async_main
 
@@ -23,6 +23,7 @@ async def main() -> None:
   dp.include_router(menu.router)
   dp.include_router(habits.router)
   dp.include_router(my_habits.router)
+  dp.include_router(mood.router)
   await async_main()
   await dp.start_polling(bot)
 

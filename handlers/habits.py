@@ -1,6 +1,6 @@
 import re
 from aiogram import Router, F
-from aiogram.types import Message
+from aiogram.types import Message, ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
@@ -18,7 +18,7 @@ class Habit(StatesGroup):
 
 @router.message(F.text == '➕ Добавить привычку')
 async def add_habit_handler(message: Message, state: FSMContext):
-  await message.answer('Введите название привычки')
+  await message.answer('Введите название привычки', reply_markup=ReplyKeyboardRemove())
   await state.set_state(Habit.name)
 
 @router.message(Habit.name)
