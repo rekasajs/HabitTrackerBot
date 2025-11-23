@@ -19,6 +19,7 @@ class User(Base):
   created_at = Column(DateTime, default=datetime.now)
 
   habits = relationship("Habit", back_populates="user")
+  mood = relationship('Mood', back_populates="user")
 
 class Habit(Base):
   __tablename__ = 'habits'
@@ -31,7 +32,7 @@ class Habit(Base):
   created_at = Column(DateTime, default=datetime.now)
   is_active = Column(Integer, default=True)
 
-  user= relationship('User', back_populates="habits")
+  user = relationship('User', back_populates="habits")
   completions = relationship("HabitCompletion", back_populates="habit")
 
 class HabitCompletion(Base):
@@ -43,6 +44,15 @@ class HabitCompletion(Base):
   created_at = Column(DateTime, default=datetime.now)
 
   habit = relationship("Habit", back_populates="completions")
+
+class Mood(Base):
+  __tablename__ = 'moods'
+
+  id = Column(Integer, primary_key=True, index=True)
+  user_id = Column(Integer, ForeignKey('users.id'))
+  mood = Column(Integer)
+
+  user = relationship('User', back_populates="mood")
 
 async def async_main():
   async with engine.begin() as conn:
