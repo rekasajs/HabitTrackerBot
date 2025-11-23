@@ -13,4 +13,8 @@ async def set_habit(user_id, name, frequency, reminder_time):
 
 async def get_habits(user_id):
   async with async_session() as session:
-    return await session.scalars(select(Habit).where(Habit.user_id == user_id))
+   return  await session.scalars(select(Habit).where(Habit.user_id == user_id))
+  
+async def get_habit_by_id(user_id, habit_id):
+  async with async_session() as session:
+    return await session.scalar(select(Habit).where(Habit.user_id == user_id, Habit.id == habit_id))

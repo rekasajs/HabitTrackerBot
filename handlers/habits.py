@@ -7,6 +7,7 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQu
 
 from keyboards.main_menu import main_menu
 from database.requests import set_habit
+from utils.changers import frequency_changer
 
 router = Router()
 
@@ -64,8 +65,3 @@ async def add_habit_reminder_time(message: Message, state: FSMContext):
 
   await state.clear()
 
-def frequency_changer(frequency):
-  if frequency == 'daily':
-    return 'Ежедневно'
-  else:
-    return 'Еженедельно'
